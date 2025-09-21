@@ -143,12 +143,12 @@ function calculateSimpleRevenue(purchase, _product) {
 function calculateBonusByProfit(index, total, seller) {
     
     if (index === 0) {
-        return +(seller.profit * 0.15).toFixed(2); // 15% от прибыли
+        return +(seller.profit * 0.15); // 15% от прибыли
     } else if (index === 1 || index === 2) {
-        return +(seller.profit * 0.10).toFixed(2); // 10% от прибыли
+        return +(seller.profit * 0.10); // 10% от прибыли
     } else if (index === total - 1) {
         return 0; // 0% для последнего
     } else {
-        return +(seller.profit * 0.05).toFixed(2); // 5% для остальных
+        return +(seller.profit * 0.05); // 5% для остальных
     }
 }
