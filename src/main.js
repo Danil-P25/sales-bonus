@@ -82,6 +82,7 @@ function calculateBonusByProfit(index, total, seller) {
         
         // Увеличить количество продаж
         seller.sales_count += 1;
+        seller.revenue += record.total_amount;
 
         // Обработка каждого товара в чеке
         record.items.forEach(item => {
@@ -89,6 +90,7 @@ function calculateBonusByProfit(index, total, seller) {
             
             if (!product) return;
 
+            // ИСПРАВЛЕНО: Правильный вызов calculateRevenue
             const revenue = calculateRevenue(item, product);
             
             // Расчет себестоимости
@@ -98,7 +100,6 @@ function calculateBonusByProfit(index, total, seller) {
             const profit = revenue - cost;
             
             // Обновляем статистику продавца
-            seller.revenue += revenue;
             seller.profit += profit;
 
             // Учет проданных товаров
@@ -108,7 +109,6 @@ function calculateBonusByProfit(index, total, seller) {
             seller.products_sold[item.sku] += item.quantity;
         });
     });
-
     // ==================== ШАГ 2: Упорядочивание по прибыли ====================
     sellerStats.sort((a, b) => b.profit - a.profit);
 
