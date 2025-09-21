@@ -72,7 +72,7 @@ function calculateBonusByProfit(index, total, seller) {
         return acc;
     }, {});
 
-    // ==================== ЭТАП 3: Реализация бизнес-логики ====================
+    // ==================== Реализация бизнес-логики ====================
     
     // ==================== ШАГ 1: Двойной цикл перебора ====================
     data.purchase_records.forEach(record => {
@@ -106,7 +106,7 @@ function calculateBonusByProfit(index, total, seller) {
             if (!seller.products_sold[item.sku]) {
                 seller.products_sold[item.sku] = 0;
             }
-            seller.products_sold[item.sku] += item.quantity;
+            seller.products_sold[item.sku] += (seller.products_sold[item.sku] || 0) + item.quantity;
         });
     });
     // ==================== ШАГ 2: Упорядочивание по прибыли ====================
