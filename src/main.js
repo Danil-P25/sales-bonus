@@ -79,8 +79,7 @@ function calculateBonusByProfit(index, total, seller) {
         const seller = sellerIndex[record.seller_id];
         
         if (!seller) return;
-        
-        // Увеличить количество продаж
+
         seller.sales_count += 1;
         seller.revenue += record.total_amount;
         
@@ -96,10 +95,8 @@ function calculateBonusByProfit(index, total, seller) {
             // Расчет себестоимости
             const cost = product.purchase_price * item.quantity;
             
-            // Расчет прибыли
             const itemProfit = revenue - cost;
-            
-            // Обновляем статистику продавца
+
             seller.profit += itemProfit;
 
             // Учет проданных товаров
@@ -140,7 +137,7 @@ function calculateBonusByProfit(index, total, seller) {
 function calculateSimpleRevenue(purchase, _product) {
     
     const discountMultiplier = 1 - (purchase.discount / 100);
-    return +(purchase.sale_price * purchase.quantity * discountMultiplier).toFixed(2);
+    return +(purchase.sale_price * purchase.quantity * discountMultiplier);
 }
 
 function calculateBonusByProfit(index, total, seller) {
